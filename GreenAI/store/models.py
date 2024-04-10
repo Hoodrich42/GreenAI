@@ -1,5 +1,4 @@
 from django.db import models
-from phonenumber_field.modelfields import PhoneNumberField
 from django.core.validators import MinValueValidator, MaxValueValidator
 
 class Users(models.Model):
@@ -8,7 +7,7 @@ class Users(models.Model):
     first_name = models.CharField(max_length=254)
     last_name = models.CharField(max_length=254)
     surname = models.CharField(max_length=254)
-    phone_number = PhoneNumberField()
+    phone_number = models.IntegerField(validators=[MinValueValidator(10000000000), MaxValueValidator(99999999999)])
     email = models.EmailField(max_length=254)
     role = models.CharField(max_length=254, choices=role_choise)
     def str(self):
